@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>{% block title %}E-books{% endblock %}</title>
+        <link rel="stylesheet" href="{{ asset("css/semantic.min.css") }}" />
+        <link rel="stylesheet" href="{{ asset("css/base.css") }}" />
+        {% block stylesheets %}
+        {% endblock %}
+        <script src="{{ asset("js/jquery-3.6.0.min.js") }}"></script>
+        <script src="{{ asset("js/semantic.min.js") }}"></script>
+        {% block headScript %}
+        {% endblock %}
+    </head>
+    <body>
+        {% include('Parts/HeaderNav.html.twig') %}
+        <div class="ui main container">
+            {% block body %}
+            {% endblock %}
+        </div>
+        {% include('Parts/Footer.html.twig') %}
+        {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+            <script> $(function(){$('.ui.menu .ui.dropdown').dropdown({on: 'hover'});$('.ui.menu a.item').on('click', function() {$(this).addClass('active').siblings().removeClass('active') ;});}) </script>
+        {% endif %}
+        {% block bodyScript %}{% endblock %}
+    </body>
+</html>
